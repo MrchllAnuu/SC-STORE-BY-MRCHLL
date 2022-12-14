@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="https://b.top4top.io/p_2377uv9pl0.png" type="image/x-icon">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<title>MrchllHost - Jasa Pembuatan All Hosting</title>
+<style>
+/*=============== GOOGLE FONTS ===============*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem; /*56px*/
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --hue: 152;
+  --first-color: hsl(var(--hue), 24%, 32%);
+  --first-color-alt: hsl(var(--hue), 24%, 28%);
+  --first-color-light: hsl(var(--hue), 24%, 66%);
+  --first-color-lighten: hsl(var(--hue), 24%, 92%);
+  --title-color: hsl(var(--hue), 4%, 15%);
+  --text-color: hsl(var(--hue), 4%, 35%);
+  --text-color-light: hsl(var(--hue), 4%, 55%);
+  --body-color: hsl(var(--hue), 0%, 100%);
+  --container-color: #FFF;
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: 'Poppins', sans-serif;
+  --big-font-size: 2rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
+
+  /*========== Font weight ==========*/
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== Margenes Bottom ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --mb-0-5: .5rem;
+  --mb-0-75: .75rem;
+  --mb-1: 1rem;
+  --mb-1-5: 1.5rem;
+  --mb-2: 2rem;
+  --mb-2-5: 2.5rem;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/* Responsive typography */
+@media screen and (min-width: 968px) {
+  :root {
+    --big-font-size: 3.5rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+  }
+}
+
+/*=============== BASE ===============*/
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+body,
+button,
+input,
+textarea{
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+}
+
+body{
+  margin: var(--header-height) 0 0 0;
+  background-color: var(--body-color);
+  color: var(--text-color);
+  transition: .4s; /*For animation dark mode*/
+}
+
+button{
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+h1,h2,h3{
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+}
+
+ul{
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== THEME ===============*/
+/*========== Variables Dark theme ==========*/
+body.dark-theme{
+  --first-color-dark: hsl(var(--hue), 8%, 20%);
+  --title-color: hsl(var(--hue), 4%, 95%);
+  --text-color: hsl(var(--hue), 4%, 75%);
+  --body-color: hsl(var(--hue), 8%, 12%);
+  --container-color: hsl(var(--hue), 8%, 16%);
+}
+
+/*========== Button Dark/Light ==========*/
+.change-theme{
+  color: var(--title-color);
+  font-size: 1.15rem;
+  cursor: pointer;
+}
+
+.nav__btns{
+  display: inline-flex;
+  align-items: center;
+  column-gap: 1rem;
+}
+
+/*========== 
+Color changes in some parts of 
+the website, in dark theme 
+==========*/
+
+.dark-theme .steps__bg,
+.dark-theme .questions{
+  background-color: var(--first-color-dark);
+}
+
+.dark-theme .product__circle,
+.dark-theme .footer__subscribe{
+  background-color: var(--container-color);
+}
+
+.dark-theme .scroll-header{
+  box-shadow: 0 1px 4px hsla(var(--hue), 4%, 4%, .3);
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.section{
+  padding: 5.5rem 0 1rem;
+}
+
+.section__title,
+.section__title-center{
+  font-size: var(--h2-font-size);
+  margin-bottom: var(--mb-2);
+  line-height: 140%;
+}
+
+.section__title-center{
+  text-align: center;
+}
+
+.container{
+  max-width: 968px;
+  margin-left: var(--mb-1-5);
+  margin-right: var(--mb-1-5);
+}
+
+.grid{
+  display: grid;
+}
+
+.main{
+  overflow: hidden; /*For animation*/
+}
+
+/*=============== HEADER ===============*/
+.header{
+  width: 100%;
+  background-color: var(--body-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-fixed);
+  transition: .4s; /*For animation dark mode*/
+}
+
+/*=============== NAV ===============*/
+.nav{
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__logo,
+.nav__toggle,
+.nav__close{
+  color: var(--title-color);
+}
+
+.nav__logo{
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: -1px;
+  display: inline-flex;
+  align-items: center;
+  column-gap: .5rem;
+  transition: .3s;
+}
+
+.nav__logo-icon{
+  font-size: 1.15rem;
+  color: var(--first-color);
+}
+
+.nav__logo:hover{
+  color: var(--first-color);
+}
+
+.nav__toggle{
+  display: inline-flex;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px){
+  .nav__menu{
+    position: fixed;
+    background-color:var(--container-color);
+    width: 80%;
+    height: 100%;
+    top: 0;
+    right: -100%;
+    box-shadow: -2px 0 4px hsla(var(--hue), 24%, 15%, .1);
+    padding: 4rem 0 0 3rem;
+    border-radius: 1rem 0 0 1rem;
+    transition: .3s;
+    z-index: var(--z-fixed);
+  }
+}
+
+.nav__close{
+  font-size: 1.5rem;
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  cursor: pointer;
+}
+
+.nav__list{
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+}
+
+.nav__link{
+  color: var(--title-color);
+  font-weight: var(--font-medium);
+  transition: .3s;
+}
+
+.nav__link:hover{
+  color:#42A5F5;
+}
+
+/* Show menu */
+.show-menu{
+  right: 0;
+}
+
+/* Change background header */
+.scroll-header{
+  box-shadow: 0 1px 4px hsla(var(--hue), 4%, 15%, .1);
+}
+
+/* Active link */
+.active-link{
+  position: relative;
+  color: #42A5F5;
+}
+
+.active-link::after{
+  content: '';
+  position: absolute;
+  bottom: -.5rem;
+  left: 0;
+  width: 50%;
+  height: 2px;
+  background-color: #42A5F5;
+}
+
+/*=============== HOME ===============*/
+.home{
+  padding: 3.5rem 0 2rem;
+}
+
+.home__container{
+  position: relative;
+  row-gap: 2rem;
+}
+
+.home__img{
+  width: 200px;
+  justify-self: center;
+}
+
+.home__title{
+  font-size: 27px;
+  line-height: 140%;
+  margin-bottom: var(--mb-1);
+}
+
+.home__description{
+  margin-bottom: var(--mb-2-5);
+}
+
+.home__social{
+  position: absolute;
+  top: 2rem;
+  right: -1rem;
+  display: grid;
+  justify-items: center;
+  row-gap: 3.5rem;
+}
+
+.home__social-follow{
+  font-weight: var(--font-medium);
+  font-size: var(--smaller-font-size);
+  color: #3D528C;
+  position: relative;
+  transform: rotate(90deg);
+}
+
+.home__social-follow::after{
+  content: '';
+  position: absolute;
+  width: 1rem;
+  height: 2px;
+  background-color: #3D528C;
+  right: -45%;
+  top: 50%;
+}
+
+.home__social-links{
+  display: inline-flex;
+  flex-direction: column;
+  row-gap: .25rem;
+}
+
+.home__social-link{
+  font-size: 1rem;
+  color: #3D528C;
+  transition: .3s;
+}
+
+.home__social-link:hover{
+  transform: translateX(.25rem);
+}
+
+/*=============== BUTTONS ===============*/
+.button{
+  display: inline-block;
+  background-color: #3D528C;
+  color: #FFF;
+  padding: 1rem 1.75rem;
+  border-radius: .5rem;
+  font-weight: var(--font-medium);
+  transition: .3s;
+}
+
+.button:hover{
+  background-color: #3D528C;
+}
+
+.button__icon{
+  transition: .3s;
+}
+
+.button:hover .button__icon{
+  transform: translateX(.25rem);
+}
+
+.button--flex{
+  display: inline-flex;
+  align-items: center;
+  column-gap: .5rem;
+}
+
+.button--link{
+  color: #FFFFFF;
+  font-weight: var(--font-medium);
+}
+
+.button--link:hover .button__icon{
+  transform: translateX(.25rem);
+}
+
+/*=============== ABOUT ===============*/
+.about__container{
+  row-gap: 2rem;
+}
+
+.about__img{
+  width: 280px;
+  justify-self: center;
+}
+
+.about__title{
+  margin-bottom: var(--mb-1);
+}
+
+.about__description{
+  margin-bottom: var(--mb-2);
+}
+
+.about__details{
+  display: grid;
+  row-gap: 1rem;
+  margin-bottom: var(--mb-2-5);
+}
+
+.about__details-description{
+  display: inline-flex;
+  column-gap: .5rem;
+  font-size: var(--small-font-size);
+}
+
+.about__details-icon{
+  font-size: 1rem;
+  color: #3D528C;
+  margin-top: .15rem;
+}
+
+/*=============== STEPS ===============*/
+.steps__bg{
+  background-color: #3D528C;
+  padding: 3rem 2rem 2rem;
+  border-radius: 1rem;
+}
+
+.steps__container{
+  gap: 2rem;
+  padding-top: 1rem;
+}
+
+.steps__title{
+  color: #FFF;
+}
+
+.steps__card{
+  background-color: var(--container-color);
+  padding: 2.5rem 3rem 2rem 1.5rem;
+  border-radius: 1rem;
+}
+
+.steps__card-number{
+  display: inline-block;
+  background-color: #3D528C;
+  color: #FFF;
+  padding: .2rem .25rem;
+  border-radius: .25rem;
+  font-size: var(--h1-font-size);
+  margin-bottom: var(--mb-1-5);
+  transition: .3s;
+}
+
+.steps__card-title{
+  font-size: var(--h3-font-size);
+  margin-bottom: var(--mb-0-5);
+}
+
+.steps__card-description{
+  font-size: var(--small-font-size);
+}
+
+.steps__card:hover .steps__card-number{
+  transform: translateY(-.25rem);
+}
+
+/*=============== PRODUCTS ===============*/
+.product__description{
+  text-align: center;
+}
+
+.product__container{
+  padding: 3rem 0;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem 2rem;
+}
+
+.product__card{
+  display: grid;
+  position: relative;
+}
+
+.product__img{
+  position: relative;
+  width: 120px;
+  justify-self: center;
+  margin-bottom: var(--mb-0-75);
+  transition: .3s;
+  -webkit-transition: 0.4s ease;
+}
+
+.product__title,
+.product__price{
+  font-size: var(--small-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+}
+
+.product__title{
+  margin-bottom: .25rem;
+}
+
+.product__button{
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0;
+  background-color: #3D528C;
+  color: #FFF;
+  padding: .25rem;
+  border-radius: .35rem;
+  font-size: 1.15rem;
+}
+
+.product__button:hover{
+  background-color: var(--first-color-alt);
+}
+
+.product__circle{
+  width: 90px;
+  height: 90px;
+  background-color: #3D528C;
+  border-radius: 50%;
+  position: absolute;
+  top: 18%;
+  left: 5%;
+}
+
+.product__card:hover .product__img{
+  -webkit-transform: scale(2.50);
+  transform: scale(2.50);
+}
+
+/*=============== QUESTIONS ===============*/
+.questions{
+  background-color: #3D528C;
+  color: #FFFFFF;
+}
+
+.questions__container{
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+}
+
+.questions__group{
+  display: grid;
+  row-gap: 1.5rem;
+}
+
+.questions__item{
+  background-color: var(--container-color);
+  border-radius: .25rem;
+}
+
+.questions__item-title{
+  font-size: var(--small-font-size);
+  font-weight: var(--font-medium);
+  font-color: var(--text-color-light);
+}
+
+.questions__icon{
+  font-size: 1.25rem;
+  color: var(--title-color);
+}
+
+.questions__description{
+  font-size: var(--smaller-font-size);
+  padding: 0 1.25rem 1.25rem 2.5rem;
+  border: 2px 2px 0 2px solid var(--text-color-light);
+  border-radius: 10px;
+}
+
+.questions__header{
+  display: flex;
+  align-items: center;
+  column-gap: .5rem;
+  padding: .75rem .5rem;
+  cursor: pointer;
+}
+
+.questions__content{
+  overflow: hidden;
+  height: 0;
+  border: 0 2px 2px 2px solid;
+  border-radius: 10px;
+}
+
+.questions__item,
+.questions__header,
+.questions__item-title,
+.questions__icon,
+.questions__description,
+.questions__content{
+  transition: .3s;
+}
+
+.questions__item:hover{
+  box-shadow: 0 2px 8px hsla(var(--hue), 4%, 15%, .15);
+}
+
+/*Rotate icon, change color of titles and background*/
+.accordion-open .questions__header,
+.accordion-open .questions__content{
+  background-color: #3D528C;
+}
+
+.accordion-open .questions__item-title,
+.accordion-open .questions__description,
+.accordion-open .questions__icon{
+  color: #FFF;
+}
+
+.accordion-open .questions__icon{
+  transform: rotate(45deg);
+}
+
+/*=============== CONTACT ===============*/
+.contact__container{
+  row-gap: 3.5rem;
+}
+
+.contact__data{
+  display: grid;
+  row-gap: 2rem;
+}
+
+.contact__subtitle{
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-medium);
+  color: var(--text-color);
+  margin-bottom: var(--mb-0-5);
+}
+
+.contact__description{
+  display: inline-flex;
+  align-items: center;
+  column-gap: .5rem;
+  color: var(--title-color);
+  font-weight: var(--font-medium);
+}
+
+.contact__icon{
+  font-size: 1.25rem;
+}
+
+.contact__inputs{
+  display: grid;
+  row-gap: 2rem;
+  margin-bottom: var(--mb-2-5);
+}
+
+.contact__content{
+  position: relative;
+  height: 3rem;
+  border-bottom: 1px solid var(--text-color-light);
+}
+
+.contact__input{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 1rem 1rem 1rem 0;
+  background: none;
+
+  color: var(--text-color);
+
+  
+  border: none;
+  outline: none;
+  z-index: 1;
+}
+
+.contact__label{
+  position: absolute;
+  top: .75rem;
+  width: 100%;
+  font-size: var(--small-font-size);
+  color: var(--text-color-light);
+  transition: .3s;
+}
+
+.contact__area{
+  height: 7rem;
+}
+
+.contact__area textarea{
+  resize: none;
+}
+
+/*Input focus move up label*/
+.contact__input:focus + .contact__label{
+  top: -.75rem;
+  left: 0;
+  font-size: var(--smaller-font-size);
+  z-index: 10;
+}
+
+/*Input focus sticky top label*/
+.contact__input:not(:placeholder-shown).contact__input:not(:focus) + .contact__label{
+  top: -.75rem;
+  font-size: var(--smaller-font-size);
+  z-index: 10;
+}
+
+/*=============== FOOTER ===============*/
+.footer__container{
+  row-gap: 3rem;
+}
+
+.footer__logo{
+  display: inline-flex;
+  align-items: center;
+  column-gap: .5rem;
+  color: var(--title-color);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: var(--mb-2-5);
+  transition: .3s;
+}
+
+.footer__logo-icon{
+  font-size: 1.15rem;
+  color: var(--first-color);
+}
+
+.footer__logo:hover{
+  color: var(--first-color);
+}
+
+.footer__title{
+  font-size: var(--h3-font-size);
+  margin-bottom: var(--mb-1-5);
+}
+
+.footer__subscribe{
+  background-color: rgb(151, 203, 245);
+  padding: .75rem;
+  display: flex;
+  justify-content: space-between;
+  border-radius: .5rem;
+}
+
+.footer__input{
+  width: 70%;
+  padding: 0 .5rem;
+  background: rgb(151, 203, 245);
+  color: #FFF;
+  border: none;
+  outline: none;
+}
+
+.footer__button{
+  padding: 1rem;
+}
+
+.footer__data{
+  display: grid;
+  row-gap: .75rem;
+}
+
+.footer__information{
+  font-size: var(--small-font-size);
+}
+
+.footer__social{
+  display: inline-flex;
+  column-gap: .75rem;
+}
+
+.footer__social-link{
+  font-size: 1rem;
+  color: var(--text-color);
+  transition: .3s;
+}
+
+.footer__social-link:hover{
+  transform: translateY(-.25rem);
+}
+
+.footer__cards{
+  display: inline-flex;
+  align-items: center;
+  column-gap: .5rem;
+}
+.footer__card{
+  width: 35px;
+}
+
+.footer__copy{
+  text-align: center;
+  font-size: var(--smaller-font-size);
+  color: var(--text-color-light);
+  margin: 5rem 0 1rem;
+}
+
+/*=============== SCROLL UP ===============*/
+.scrollup{
+  position: fixed;
+  background-color: #42A5F5;
+  right: 1rem;
+  bottom: -30%;
+  display: inline-flex;
+  padding: .5rem;
+  border-radius: .25rem;
+  z-index: var(--z-tooltip);
+  opacity: .8;
+  transition: .4s;
+}
+
+.scrollup__icon{
+  font-size: 1rem;
+  color: #FFF;
+}
+
+.scrollup:hover{
+  background-color: var(--first-color-alt);
+  opacity: 1;
+}
+
+/* Show Scroll Up*/
+.show-scroll{
+  bottom: 3rem;
+}
+
+/*=============== SCROLL BAR ===============*/
+::-webkit-scrollbar{
+  width: .6rem;
+  background: hsl(var(--hue), 4%, 53%);
+}
+
+::-webkit-scrollbar-thumb{
+  background: hsl(var(--hue), 4%, 29%);
+  border-radius: .5rem;
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 320px){
+  .container{
+    margin-left: var(--mb-1);
+    margin-right: var(--mb-1);
+  }
+
+  .home__img{
+    width: 180px;
+  }
+  .home__title{
+    font-size: var(--h1-font-size);
+  }
+
+  .steps__bg{
+    padding: 2rem 1rem;
+  }
+  .steps__card{
+    padding: 1.5rem;
+  }
+
+  .product__container{
+    grid-template-columns: .6fr;
+    justify-content: center;
+  }
+}
+
+/* For medium devices */
+@media screen and (min-width: 576px){
+  .steps__container{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product__description{
+    padding: 0 4rem;
+  }
+  .product__container{
+    grid-template-columns: repeat(2, 170px);
+    justify-content: center;
+    column-gap: 5rem;
+  }
+
+  .footer__subscribe{
+    width: 400px;
+  }
+}
+
+@media screen and (min-width: 767px){
+  body{
+    margin: 0;
+  }
+
+  .nav{
+    height: calc(var(--header-height) + 1.5rem);
+    column-gap: 3rem;
+  }
+  .nav__toggle,
+  .nav__close{
+    display: none;
+  }
+  .nav__list{
+    flex-direction: row;
+    column-gap: 3rem;
+  }
+  .nav__menu{
+    margin-left: auto;
+  }
+
+  .home__container,
+  .about__container,
+  .questions__container,
+  .contact__container,
+  .footer__container{
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .home{
+    padding: 10rem 0 5rem;
+  }
+  .home__container{
+    align-items: center;
+  }
+  .home__img{
+    width: 280px;
+    order: 1;
+  }
+  .home__social{
+    top: 30%;
+  }
+
+  .questions__container{
+    align-items: flex-start;
+  }
+
+  .footer__container{
+    column-gap: 3rem;
+  }
+  .footer__subscribe{
+    width: initial;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 992px){
+  .container{
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section{
+    padding: 8rem 0 1rem;
+  }
+  .section__title,
+  .section__title-center{
+    font-size: var(--h1-font-size);
+  }
+
+  .home{
+    padding: 13rem 0 5rem;
+  }
+  .home__img{
+    width: 350px;
+  }
+  .home__description{
+    padding-right: 7rem;
+  }
+
+  .about__img{
+    width: 380px;
+  }
+
+  .steps__container{
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .steps__bg{
+    padding: 3.5rem 2rem;
+  }
+  .steps__card-title{
+    font-size: var(--normal-font-size);
+  }
+
+  .product__description{
+    padding: 0 16rem;
+  }
+  .product__container{
+    padding: 4rem 0;
+    grid-template-columns: repeat(3, 185px);
+    gap: 2rem 4rem;
+  }
+  .product__img{
+    width: 180px;
+    margin-right:0.5rem;
+  }
+  .product__circle{
+    width: 110px;
+    height: 110px;
+  }
+  .product__title,
+  .product__price{
+    font-size: var(--normal-font-size);
+  }
+
+  .questions__container{
+    padding: 1rem 0 4rem;
+  }
+  .questions__title{
+    text-align: initial;
+  }
+  .questions__group{
+    row-gap: 2rem;
+  }
+  .questions__header{
+    padding: 1rem;
+  }
+  .questions__description{
+    padding: 0 3.5rem 2.25rem 2.75rem;
+  }
+
+  .footer__logo{
+    font-size: var(--h3-font-size);
+  }
+  .footer__container{
+    grid-template-columns: 1fr .5fr .5fr .5fr;
+  }
+  .footer__copy{
+    margin: 7rem 0 2rem;
+  }
+}
+
+@media screen and (min-width: 1200px){
+  .home__social{
+    right: -3rem;
+    row-gap: 4.5rem;
+  }
+  .home__social-follow{
+    font-size: var(--small-font-size);
+  }
+  .home__social-follow::after{
+    width: 1.5rem;
+    right: -60%;
+  }
+  .home__social-link{
+    font-size: 1.15rem;
+  }
+
+  .about__container{
+    column-gap: 7rem;
+  }
+
+  .scrollup{
+    right: 3rem;
+  }
+}
+</style>
+</head>
+<script type="text/javascript"> window.$crisp=[];window.CRISP_WEBSITE_ID="78b23e01-a70f-46f5-a191-1fc881c2386f";(function(){ d=document;s=d.createElement("script"); s.src="https://client.crisp.chat/l.js"; s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})(); </script>
+<header class="header" id="header">
+<nav class="nav container">
+<a href="https://wa.me//6281381685954" class="nav__logo">Mrchll Hosting.</a>
+<div class="nav__menu" id="nav-menu">
+<ul class="nav__list">
+<li class="nav__item">
+<a href="#home" class="nav__link active-link">Home</a></li>
+<li class="nav__item">
+<a href="#about" class="nav__link">About</a></li>
+<li class="nav__item">
+<a href="#products" class="nav__link">Products</a></li>
+<li class="nav__item">
+<a href="#faqs" class="nav__link">FAQs</a></li>
+<li class="nav__item">
+<a href="#contact" class="nav__link">Contact Us</a>
+</li>
+</ul>
+<div class="nav__close" id="nav-close">
+<i class="ri-close-line"></i>
+</div>
+</div>
+<div class="nav__btns">
+
+<i class="ri-moon-line change-theme" id="theme-button"></i>
+<div class="nav__toggle" id="nav-toggle">
+<i class="ri-menu-line"></i>
+</div>
+</div>
+</nav>
+</header>
+<main class="main">
+
+<section class="home" id="home">
+<div class="home__container container grid">
+<div class="home__data">
+<h1 class="home__title">Developer Web<br>Hosting & Master Reseller</h1>
+<p class="home__description"> The best & recommended Hosting in Indonesia</p>
+<a href="#about" class="button button--flex">Explore <i class="ri-arrow-right-down-line button__icon"></i></a></div>
+<div class="home__social">
+<span class="home__social-follow">Follow Us</span>
+<div class="home__social-links">
+</a>
+<a href="https://wa.me//6281381685954" target="_blank" class="home__social-link">
+<i class="ri-whatsapp-fill"></i>
+</a>
+<a href="https://www.instagram.com/hijklmarchel?r=nametag" target="_blank" class="home__social-link">
+<i class="ri-instagram-fill"></i>
+</a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="about section container" id="about">
+<div class="about__container grid">
+<div class="about__data">
+<h2 class="section__title about__title">
+siapa kita & <br> mengapa memilih kami
+</h2>
+<p class="about__description">
+Kami merupakan online store pembelian Web, cPanel, Whm & Mwhm secara murah dan aman
+</p>
+<div class="about__details">
+<p class="about__details-description">
+<i class="ri-checkbox-fill about__details-icon"></i>
+kami selalu memberikan tepat waktu.
+</p>
+<p class="about__details-description">
+<i class="ri-checkbox-fill about__details-icon"></i>
+kami memberikan panduan untuk kalian yang masih pemula.
+</p>
+<p class="about__details-description">
+<i class="ri-checkbox-fill about__details-icon"></i>
+kami akan selalu ada saat kalian membutuhkan masalah.
+</p>
+<p class="about__details-description">
+<i class="ri-checkbox-fill about__details-icon"></i>
+100% dijamin aman dan berkualitas.
+</p>
+</div>
+<a href="#products" class="button button--link button--flex">
+Order Now <i class="ri-arrow-right-down-line button__icon"></i>
+</a>
+</div>
+</div>
+</section>
+
+<section class="steps section container">
+<div class="steps__bg">
+<h2 class="section__title-center steps__title">
+Information
+</h2>
+<div class="steps__container grid">
+<div class="steps__card">
+<div class="steps__card-number">01</div>
+<p class="steps__card-description">
+Website bergaransi , Tergantung harga beli website nya
+</p>
+</div>
+<div class="steps__card">
+<div class="steps__card-number">02</div>
+<p class="steps__card-description">
+Dibuat dengan WHM terbaik, Ucapkan selamat tinggal Delay.
+</p>
+</div>
+<div class="steps__card">
+<div class="steps__card-number">03</div>
+<p class="steps__card-description">
+Pembayaran simple melalui Dana, Ovo, Gopay, Qris.
+</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="product section container" id="products">
+<h2 class="section__title-center">
+Check out our <br> products
+</h2>
+<p class="product__description">
+berikut beberapa tampilan web.
+</p>
+<div class="product__container grid">
+<article class="product__card">
+<div class="product__circle"></div>
+<img src="https://k.top4top.io/p_2377c3nvz0.jpg" alt="Sc BotHost" class="product__img" />
+<h3 class="product__title">SC BOT HOST</h3>
+<span class="product__price">Rp 50.000</span>
+<button class="button--flex product__button">
+<a style="color: inherit;" href="https://wa.me//6285891634201" class="ri-shopping-bag-line"></a>
+</article>
+</button>
+<article class="product__card">
+<div class="product__circle"></div>
+<img src="https://c.top4top.io/p_2377wpvz10.jpg" alt="Pes spin" class="product__img" />
+<h3 class="product__title">SC STORE</h3>
+<span class="product__price">Rp 20.000</span>
+<button class="button--flex product__button">
+<a style="color: inherit;" href="https://wa.me//6285891634201" class="ri-shopping-bag-line"></a>
+</div>
+</section>
+<section class="contact section container" id="contact">
+<div class="contact__container grid">
+<div class="contact__box">
+<h2 class="section__title">
+Hubungi kami <br> melalui informasi yang<br>kami berikan di bawah ini
+</h2>
+<div class="contact__data">
+<div class="contact__information">
+<h3 class="contact__subtitle">WhatsApp & Telephone</h3>
+<span class="contact__description">
+<i class="ri-phone-line contact__icon"></i>
+<a href="https://wa.me/6281381685954" class="__cf_email__" data-cfemail="">+62 813-8168-5954</a>
+</span>
+</div>
+<div class="contact__information">
+<h3 class="contact__subtitle">Email</h3>
+<span class="contact__description">
+<i class="ri-mail-line contact__icon"></i>
+<a href="https://mail.google.com/mail/mu/mp/776/#mn" class="__cf_email__" data-cfemail="">cs@mrchll.online</a>
+</span>
+</div>
+</div>
+</div>
+<form action="" class="contact__form">
+<div class="contact__inputs">
+<div class="contact__content">
+<input type="email" placeholder=" " class="contact__input">
+<label for="email" class="contact__label">Email</label>
+</div>
+<div class="contact__content">
+<input type="text" placeholder=" " class="contact__input">
+<label for="subjek" class="contact__label">Subject</label>
+</div>
+<div class="contact__content contact__area">
+<textarea name="message" placeholder=" " class="contact__input"></textarea>
+<label for="message" class="contact__label">Message</label>
+</div>
+</div>
+<button class="button button--flex">
+Send Message
+<i class="ri-arrow-right-up-line button__icon"></i>
+</button>
+</form>
+</div>
+</section>
+
+<footer class="footer section">
+<div class="footer__container container grid">
+<div class="footer__content">
+<a href="https://wa.me//6281381685954" class="footer__logo">
+</a>
+</div>
+<div class="footer__content">
+<h3 class="footer__title">Contact Us</h3>
+<ul class="footer__data">
+<a href="https://wa.me//6281381685954" class="footer__social-link">
+<i class="ri-whatsapp-fill"></i>
+<li class="footer__information">+62 813-8168-5954</li>
+<div class="footer__social">
+</a>
+</div>
+</ul>
+</div>
+</div>
+<p class="footer__copy">Copyright © 2022 MrchllHost. All rigths reserved</p>
+</footer>
+
+<a href="#" class="scrollup" id="scroll-up">
+<i class="ri-arrow-up-fill scrollup__icon"></i>
+</a>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="scrollreveal.min.js"></script>
+
+<script src="main.js"></script>
+<script>
+/**
+ * crisp-client
+ * @version v2.7.0 b554d3d
+ * @author Crisp IM SAS
+ * @date 4/14/2022
+ */
+(function(){try{var t="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t};i.prototype.init=function(){var i,n,s=this,r="init";try{this.n&&!0!==this.s&&(this.s=!0,(i=document.createElement("div")).id="crisp-loader",document.getElementsByTagName("body")[0].appendChild(i),n=function(){return"none"===window.getComputedStyle(i).getPropertyValue("display")},function t(){setTimeout(function(){s.f-=s.y,void 0!==window[s.x]&&"function"==typeof window[s.x].__init&&!0===n()?(s.$.info(s.ns+"."+r,"Dependencies loaded"),i.parentNode.removeChild(i),window[s.x].__init({dollar_crisp:window[s.x],project_name:s.on,url_go:s.fn,url_image:s._n,url_game:s.fs,url_relay_client:s.ms,url_relay_stream:s.ws,url_website:s._e,url_assets:s.io,rtc_ice:s.do,client_environment:s._a,client_revision:s.Pp,website_domain:s.Tp,website_id:s.n,token_id:s.Np,cookie_expire:s.Ad,cookie_domain:s.Kp,page_url:s.Gp,page_domain:s.Mp,browser_useragent:s.Lp,browser_timezone:s.Yp,browser_capabilities:s.Xp,browser_locales:s.Jp,ready_trigger:s.Wp,runtime_configuration:s.Hp,reset_handler:function(){s.reset()}})):0<s.f?t():s.$.error(s.ns+"."+r,"Could not load dependencies")},s.y)}())}catch(t){}},i.prototype.reset=function(){try{this.l(),this.init()}catch(t){}},i.prototype.Qp=function(){try{this.Vp("dns-prefetch",this.ms),this.Vp("preconnect",this.io),this.Zp(),this._f()}catch(t){}},i.prototype.Vp=function(t,i){try{var n=document.createElement("link");n.setAttribute("href",i),n.setAttribute("rel",t),n.setAttribute("crossorigin",""),this.t_(n),document.getElementsByTagName("head")[0].appendChild(n)}catch(t){}},i.prototype.Zp=function(){try{var t=document.createElement("script");t.src=[this.io+"/",this.i_+"/","client.js?"+this.Pp].join(""),t.type="text/javascript",t.async=1,this.t_(t),document.getElementsByTagName("head")[0].appendChild(t)}catch(t){}},i.prototype._f=function(){try{var t=this.n_(),i=document.createElement("link");i.href=[this.io+"/",this.s_+"/","client_"+t+".css?"+this.Pp].join(""),i.type="text/css",i.rel="stylesheet",this.t_(i),document.getElementsByTagName("head")[0].appendChild(i)}catch(t){}},i.prototype.l=function(){this.r_(),this.e_(),this.o_()},i.prototype.r_=function(){this.s=!1,this.f=this.c_,this.Tp=document.domain,this.Gp=document.location.href,this.Mp=document.location.hostname,this.Lp=window.navigator.userAgent,this.Yp=(new Date).getTimezoneOffset(),this.Jp=this.h_(),"string"==typeof CRISP_WEBSITE_ID&&CRISP_WEBSITE_ID?this.n=CRISP_WEBSITE_ID:this.n=this.a_(),"string"==typeof CRISP_TOKEN_ID&&CRISP_TOKEN_ID?this.Np=CRISP_TOKEN_ID:"number"==typeof CRISP_TOKEN_ID&&CRISP_TOKEN_ID?this.Np=CRISP_TOKEN_ID.toString():this.Np=null,"number"==typeof CRISP_COOKIE_EXPIRE&&0<CRISP_COOKIE_EXPIRE?this.Ad=CRISP_COOKIE_EXPIRE:this.Ad=null,"string"==typeof CRISP_COOKIE_DOMAIN&&CRISP_COOKIE_DOMAIN?this.Kp=CRISP_COOKIE_DOMAIN:this.Kp=null,"function"==typeof CRISP_READY_TRIGGER?this.Wp=CRISP_READY_TRIGGER:this.Wp={},"object"===("undefined"==typeof CRISP_RUNTIME_CONFIG?"undefined":t(CRISP_RUNTIME_CONFIG))?this.Hp=CRISP_RUNTIME_CONFIG:this.Hp={},"object"===("undefined"==typeof CRISP_INCLUDE_ATTRS?"undefined":t(CRISP_INCLUDE_ATTRS))?this.u_=CRISP_INCLUDE_ATTRS:this.u_={}},i.prototype.e_=function(){try{this.Xp=[],"function"==typeof window.MutationObserver&&"function"==typeof JSON.stringify&&this.Xp.push("browsing"),("function"==typeof window.RTCPeerConnection&&"object"===t(navigator.mediaDevices)&&"https:"===document.location.protocol&&(window.innerWidth||0)>=this.d_&&(window.innerHeight||0)>=this.p_||!0===this.f_)&&this.Xp.push("call")}catch(t){}},i.prototype.o_=function(){var t;try{this.Hp.locale&&(-1!==(t=this.Jp.indexOf(this.Hp.locale))&&this.Jp.splice(t,1),this.Jp.unshift(this.Hp.locale))}catch(t){}},i.prototype.t_=function(t){try{for(var i in this.u_)this.u_.hasOwnProperty(i)&&t.setAttribute(i,this.u_[i])}catch(t){}},i.prototype.a_=function(){var t=null;try{for(var i=document.querySelectorAll("script[src]"),n=0;n<i.length;n++){var s=this.l_.exec(i[n].src);if(s&&"string"==typeof s[1]){t=s[1];break}}}catch(t){}finally{return t}},i.prototype.n_=function(){var t="default";try{var i=(navigator.userAgent||"").toLowerCase(),n=(navigator.appVersion||"").toLowerCase(),s=!1;if(!0!==s&&(-1===i.indexOf("opera mini/")&&-1===i.indexOf("msie")&&-1===n.indexOf("trident/")||(s=!0)),!0!==s)for(var r=0;r<this.__.length;r++){var e=this.__[r],o=i.match(e.pattern);if(o&&o[1]&&parseInt(o[1],10)<=e.version){s=!0;break}}!0===s&&(t="legacy")}catch(t){}finally{return t}},i.prototype.m_=function(){var t=!0;try{!(window.innerWidth&&window.innerWidth<this.y_)&&!0===navigator.cookieEnabled&&!0!==this.I_(this.Mp)&&!0!==this.v_(this.Lp)&&window.WebSocket||(t=!1)}catch(t){}finally{return t}},i.prototype.I_=function(){var t=0<arguments.length&&void 0!==arguments[0]?arguments[0]:"",i=!1;try{if(t)for(var n=0;n<this.w_.domains.length;n++){var s=this.w_.domains[n],r="."+s;if(t===s||t.slice(-1*r.length)===r){i=!0;break}}}catch(t){}finally{return i}},i.prototype.v_=function(){var t=0<arguments.length&&void 0!==arguments[0]?arguments[0]:"",i=!1;try{if(t)for(var n=0;n<this.w_.agents.length;n++)if(-1!==t.indexOf(this.w_.agents[n])){i=!0;break}}catch(t){}finally{return i}},i.prototype.h_=function(){var t=[];try{for(var i=navigator.languages&&0<navigator.languages.length?navigator.languages:[navigator.language||navigator.userLanguage],n=0;n<i.length;n++)i[n]&&t.push(i[n])}catch(t){}finally{return t}},new i}catch(t){}function i(){var t,i=this;try{this.ns="CrispLoader",this.$={warn:function(){},error:function(){},info:function(){},log:function(){},debug:function(){}},this.f_=!1,this.on="crisp-client",this.C_="client.crisp.chat",this.R_="client.relay.crisp.chat",this.g_="stream.relay.crisp.chat",this.Pp="b554d3d",this._a="production",this.S_="https:",this._e="https://crisp.chat",this.fn="https://go.crisp.chat",this._n="https://image.crisp.chat",this.fs="https://game.crisp.chat",this.ms=this.S_+"//"+this.R_,this.ws=this.S_+"//"+this.g_,this.io=this.S_+"//"+this.C_,this.do=[{urls:["stun:stun.media.crisp.chat:3478?transport=udp","stun:stun.media.crisp.chat:3478?transport=tcp","stun:stun.media.crisp.chat:3479?transport=udp","stun:stun.media.crisp.chat:3479?transport=tcp"]},{urls:["turn:turn.media.crisp.chat:3478?transport=udp","turn:turn.media.crisp.chat:3478?transport=tcp","turn:turn.media.crisp.chat:3479?transport=udp","turn:turn.media.crisp.chat:3479?transport=tcp","turns:turn.media.crisp.chat:443?transport=tcp"],username:"client_9F9kh",credential:"DPCEHTqUb7jiJ2mvnzcUmFV4mKK6c8jntUXo4gC8tYCbHTocuy9YJiCxpQ4tmG3p"}],this.w_={domains:[],agents:["Googlebot","Bingbot","Slurp","DuckDuckBot","Baiduspider","YandexBot","GTmetrix","Lighthouse"]},this.i_="static/javascripts",this.s_="static/stylesheets",this.x="$crisp",this.y=100,this.c_=3e4,this.E_=1e3,this.y_=280,this.d_=320,this.p_=420,this.__=[{pattern:/edg(?:e)?\/([0-9\.]+)/,version:79},{pattern:/chrom(?:e|ium)\/([0-9\.]+)/,version:57},{pattern:/firefox\/([0-9\.]+)/,version:51},{pattern:/version\/([0-9\.]+)(?: mobile\/(?:[^\s]+))? safari\//,version:11},{pattern:/android ([0-9\.]+)/,version:7}],this.l_=/(?:http\:|https\:)?\/\/[^\/]+\/l\/([a-zA-Z0-9\-_]+)\.js/i,this.l(),!0===this.m_()&&("interactive"===document.readyState||"complete"===document.readyState?this.init():(t=document.onreadystatechange||function(){},window.addEventListener("DOMContentLoaded",function(){i.init()}),document.onreadystatechange=function(){"function"==typeof t&&t(),"interactive"!==document.readyState&&"complete"!==document.readyState||setTimeout(function(){i.init()},i.E_)}),void 0!==window[this.x]&&"function"==typeof window[this.x].__init||this.Qp())}catch(t){}}})();
+</script>
+<script>
+/*=============== SHOW MENU ===============*/
+const navMenu = document.getElementById('nav-menu'),
+      navToggle = document.getElementById('nav-toggle'),
+      navClose = document.getElementById('nav-close')
+
+/*===== MENU SHOW =====*/
+/* Validate if constant exists */
+if(navToggle){
+    navToggle.addEventListener('click', () =>{
+        navMenu.classList.add('show-menu')
+    })
+}
+
+/*===== MENU HIDDEN =====*/
+/* Validate if constant exists */
+if(navClose){
+    navClose.addEventListener('click', () =>{
+        navMenu.classList.remove('show-menu')
+    })
+}
+
+/*=============== REMOVE MENU MOBILE ===============*/
+const navLink = document.querySelectorAll('.nav__link')
+
+function linkAction(){
+    const navMenu = document.getElementById('nav-menu')
+    // When we click on each nav__link, we remove the show-menu class
+    navMenu.classList.remove('show-menu')
+}
+navLink.forEach(n => n.addEventListener('click', linkAction))
+
+/*=============== CHANGE BACKGROUND HEADER ===============*/
+function scrollHeader(){
+    const header = document.getElementById('header')
+    // When the scroll is greater than 80 viewport height, add the scroll-header class to the header tag
+    if(this.scrollY >= 80) header.classList.add('scroll-header'); else header.classList.remove('scroll-header')
+}
+window.addEventListener('scroll', scrollHeader)
+
+/*=============== QUESTIONS ACCORDION ===============*/
+const accordionItems = document.querySelectorAll('.questions__item')
+
+accordionItems.forEach((item) =>{
+    const accordionHeader = item.querySelector('.questions__header')
+
+    accordionHeader.addEventListener('click', () =>{
+        const openItem = document.querySelector('.accordion-open')
+
+        toggleItem(item)
+
+        if(openItem && openItem!== item){
+            toggleItem(openItem)
+        }
+    })
+})
+
+const toggleItem = (item) =>{
+    const accordionContent = item.querySelector('.questions__content')
+
+    if(item.classList.contains('accordion-open')){
+        accordionContent.removeAttribute('style')
+        item.classList.remove('accordion-open')
+    }else{
+        accordionContent.style.height = accordionContent.scrollHeight + 'px'
+        item.classList.add('accordion-open')
+    }
+
+}
+
+/*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
+const sections = document.querySelectorAll('section[id]')
+
+function scrollActive(){
+    const scrollY = window.pageYOffset
+
+    sections.forEach(current =>{
+        const sectionHeight = current.offsetHeight,
+              sectionTop = current.offsetTop - 58,
+              sectionId = current.getAttribute('id')
+
+        if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
+            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add('active-link')
+        }else{
+            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove('active-link')
+        }
+    })
+}
+window.addEventListener('scroll', scrollActive)
+
+/*=============== SHOW SCROLL UP ===============*/ 
+function scrollUp(){
+    const scrollUp = document.getElementById('scroll-up');
+    // When the scroll is higher than 400 viewport height, add the show-scroll class to the a tag with the scroll-top class
+    if(this.scrollY >= 200) scrollUp.classList.add('show-scroll'); else scrollUp.classList.remove('show-scroll')
+}
+window.addEventListener('scroll', scrollUp)
+
+/*=============== DARK LIGHT THEME ===============*/ 
+const themeButton = document.getElementById('theme-button')
+const darkTheme = 'dark-theme'
+const iconTheme = 'ri-sun-line'
+
+// Previously selected topic (if user selected)
+const selectedTheme = localStorage.getItem('selected-theme')
+const selectedIcon = localStorage.getItem('selected-icon')
+
+// We obtain the current theme that the interface has by validating the dark-theme class
+const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'dark' : 'light'
+const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'ri-moon-line' : 'ri-sun-line'
+
+// We validate if the user previously chose a topic
+if (selectedTheme) {
+  // If the validation is fulfilled, we ask what the issue was to know if we activated or deactivated the dark
+  document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme)
+  themeButton.classList[selectedIcon === 'ri-moon-line' ? 'add' : 'remove'](iconTheme)
+}
+
+// Activate / deactivate the theme manually with the button
+themeButton.addEventListener('click', () => {
+    // Add or remove the dark / icon theme
+    document.body.classList.toggle(darkTheme)
+    themeButton.classList.toggle(iconTheme)
+    // We save the theme and the current icon that the user chose
+    localStorage.setItem('selected-theme', getCurrentTheme())
+    localStorage.setItem('selected-icon', getCurrentIcon())
+})
+
+/*=============== SCROLL REVEAL ANIMATION ===============*/
+const sr = ScrollReveal({
+    origin: 'top',
+    distance: '60px',
+    duration: 1500,
+    delay: 200,
+    // reset: true
+})
+
+sr.reveal(`.home__data`)
+sr.reveal(`.home__img`, {delay: 200})
+sr.reveal(`.home__social`, {delay: 200})
+sr.reveal(`.about__img, .contact__box`,{origin: 'left'})
+sr.reveal(`.about__data, .contact__form`,{origin: 'right'})
+sr.reveal(`.steps__card, .product__card, .questions__group, .footer`,{interval: 100})
+</script>
+<script>
+	swal("Hai", "Selamat Datang.");
+</script>
+</main>
+</body>
+</html>
